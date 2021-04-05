@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 //widgets
 import '../../Constants.dart';
+import '../widgets/custom_text_form_field.dart';
 
 //screens
 import '../widgets/custom_text.dart';
@@ -41,14 +42,43 @@ class LoginScreen extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: mediaQ.height/80,
+              height: mediaQ.height / 80,
             ),
-
             CustomText(
               title: "Sign in to Continue",
               color: Colors.grey,
               fontSize: mediaQ.width / 30,
               alignment: Alignment.topLeft,
+            ),
+            SizedBox(
+              height: mediaQ.height / 20,
+            ),
+            CustomTextFormField(
+              title: "Email",
+              hintText: "mos@example.con",
+              hintStyleColor: Colors.grey,
+              fontSize: mediaQ.width / 25,
+              onSave: (value){},
+              onValidator: (value){},
+            ),
+            SizedBox(
+              height: mediaQ.height / 20,
+            ),
+            CustomTextFormField(
+              title: "Password",
+              hintText: "***************",
+              hintStyleColor: Colors.grey,
+              fontSize: mediaQ.width / 25,
+              onSave: (value){},
+              onValidator: (value){},
+            ),
+            SizedBox(
+              height: mediaQ.height / 40,
+            ),
+            CustomText(title: "forget password?",
+            fontSize: mediaQ.width/25,
+            alignment: Alignment.topRight,
+              color: Colors.black,
             ),
           ],
         ),
