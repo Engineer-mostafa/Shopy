@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "345730049766",
+    "project_id": "shopy-eae55",
+    "storage_bucket": "shopy-eae55.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345730049766:android:f09ad7780f2c716712bd27",
+        "android_client_info": {
+          "package_name": "com.example.e_commerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "345730049766-2lkputq39gb6ckq93on2mj48kkguchl9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.e_commerce",
+            "certificate_hash": "828552f239d32da71fd3ff555c7c9e9869b4fc76"
+          }
+        },
+        {
+          "client_id": "345730049766-j0srcqb04tlm2ftkr1u9vca1ru1370np.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhWtKqQhj0hfXevZLf4gdv8KXf6ymwx7M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "345730049766-j0srcqb04tlm2ftkr1u9vca1ru1370np.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
