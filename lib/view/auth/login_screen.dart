@@ -1,4 +1,6 @@
 //Packages
+import 'package:e_commerce/view/widgets/custom_button.dart';
+import 'package:e_commerce/view/widgets/custom_button_social.dart';
 import 'package:flutter/material.dart';
 
 //widgets
@@ -11,7 +13,9 @@ import '../widgets/custom_text.dart';
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final mediaQ = MediaQuery.of(context).size;
+    final mediaQ = MediaQuery
+        .of(context)
+        .size;
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -58,8 +62,8 @@ class LoginScreen extends StatelessWidget {
               hintText: "mos@example.con",
               hintStyleColor: Colors.grey,
               fontSize: mediaQ.width / 25,
-              onSave: (value){},
-              onValidator: (value){},
+              onSave: (value) {},
+              onValidator: (value) {},
             ),
             SizedBox(
               height: mediaQ.height / 20,
@@ -69,16 +73,58 @@ class LoginScreen extends StatelessWidget {
               hintText: "***************",
               hintStyleColor: Colors.grey,
               fontSize: mediaQ.width / 25,
-              onSave: (value){},
-              onValidator: (value){},
+              onSave: (value) {},
+              onValidator: (value) {},
             ),
             SizedBox(
               height: mediaQ.height / 40,
             ),
-            CustomText(title: "forget password?",
-            fontSize: mediaQ.width/25,
-            alignment: Alignment.topRight,
+            CustomText(
+              title: "forget password?",
+              fontSize: mediaQ.width / 25,
+              alignment: Alignment.topRight,
               color: Colors.black,
+            ),
+            SizedBox(
+              height: mediaQ.height / 30,
+            ),
+            CustomButton(
+              padding: mediaQ.height / 70,
+              fontSize: mediaQ.width / 20,
+              borderRadius: mediaQ.width / 80,
+              buttonColor: primaryColor,
+              onpressed: (){},
+            ),
+            SizedBox(
+              height: mediaQ.height / 70,
+            ),
+            CustomText(
+              title: "-OR-",
+            fontSize: mediaQ.width/20,
+              alignment: Alignment.center,
+            ),
+            SizedBox(
+              height: mediaQ.height / 35,
+            ),
+            CustomButtonSocial(
+                text: "Sign In With Google",
+                imageName: 'assets/images/gg.png',
+                onPress: (){},
+              fontSize: mediaQ.width/26,
+              borderRadius: mediaQ.width/50,
+              width: mediaQ.width/4.5,
+            ),
+            SizedBox(
+              height: mediaQ.height / 35,
+            ),
+            CustomButtonSocial(
+              text: "Sign In With Facebook",
+              imageName: 'assets/images/facebook.png',
+              onPress: (){},
+              fontSize: mediaQ.width/26,
+              borderRadius: mediaQ.width/50,
+              width: mediaQ.width/4.5,
+
             ),
           ],
         ),

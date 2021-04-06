@@ -6,7 +6,7 @@ class CustomText extends StatelessWidget {
   final fontSize;
   final Alignment alignment;
 
-  const CustomText({Key key, this.title:"", this.color:Colors.black, this.fontSize:30, this.alignment:Alignment.center})
+  const CustomText({Key key, this.title:"", this.color:Colors.black, this.fontSize:30.0, this.alignment:Alignment.center})
       : super(key: key);
 
   @override
