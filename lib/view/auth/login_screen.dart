@@ -1,7 +1,9 @@
 //Packages
+import 'package:e_commerce/core/view_model/auth_view_model.dart';
 import 'package:e_commerce/view/widgets/custom_button.dart';
 import 'package:e_commerce/view/widgets/custom_button_social.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 //widgets
 import '../../Constants.dart';
@@ -10,10 +12,7 @@ import '../widgets/custom_text_form_field.dart';
 //screens
 import '../widgets/custom_text.dart';
 
-class LoginScreen extends StatelessWidget {
-
-
-
+class LoginScreen extends GetWidget<AuthViewModel> {
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +26,12 @@ class LoginScreen extends StatelessWidget {
         .of(context)
         .size;
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        title: Text("Login"),
-        backgroundColor: Colors.white,
-      ),
+
       body: Padding(
-        padding: const EdgeInsets.only(
-          left: 20,
-          right: 20,
-          top: 50,
+        padding:  EdgeInsets.only(
+          left: mediaQ.width/18,
+          right: mediaQ.width/18,
+          top: mediaQ.height/10,
         ),
         child: 
         GestureDetector(
@@ -123,7 +118,9 @@ class LoginScreen extends StatelessWidget {
                 CustomButtonSocial(
                     text: "Sign In With Google",
                     imageName: 'assets/images/gg.png',
-                    onPress: (){},
+                    onPress: ()=>
+                      controller.googleSignInMethod()
+                    ,
                   fontSize: mediaQ.width/26,
                   borderRadius: mediaQ.width/50,
                   width: mediaQ.width/4.5,
@@ -134,7 +131,7 @@ class LoginScreen extends StatelessWidget {
                 CustomButtonSocial(
                   text: "Sign In With Facebook",
                   imageName: 'assets/images/facebook.png',
-                  onPress: (){},
+                  onPress: ()=>controller.facebookSignInMethod(),
                   fontSize: mediaQ.width/26,
                   borderRadius: mediaQ.width/50,
                   width: mediaQ.width/4.5,

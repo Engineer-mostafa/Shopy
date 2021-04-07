@@ -1,0 +1,32 @@
+1 - Easy Syntax when navigation between pages
+2 - solve memory leakage automatically by dispose interface after navigation so the memory will be cleared after navigation
+3 - dependency injection
+4 - GetX provide
+    onInit  () -> is called once when call screen
+    onReady () -> is called when screen full rendered
+    onClose () -> is called when controller is destructed
+    update  () -> listen to changes == like notifylistners() in Provider
+    Get.to(ScreenClass) -> to navigate between pages
+
+
+
+             state management
+ --------------------------------------
+    not reactove -> GetBuilder<controllerName>(
+                        init: controllerName(),
+                        builder: (value) => Widgets     //if u need to access any thing from controller just right value.--------
+                    ) -> this controller is saved along the whole application = init automatically share the controller with the widget tree -> so we just will write init 1 time but if we need to use controller again out side we should write GetBuilder Again
+
+
+    with dependency -> final viewModel = Get.put(controllerName);
+    reactive -> GetX<controllerName>(
+                          init: controllerName(),
+                          builder: (value) => Widgets     //if u need to access any thing from controller just right value.--------
+                   )
+
+
+    reactive -> Obx<>(
+    Widgets     //if u need to access any thing from controller just right value.--------
+    ) -> here we will use viewModel direct as viewModel.---------
+
+
