@@ -11,8 +11,8 @@ class CustomTextFormField extends StatelessWidget {
   final fontSize;
   final Function onSave;
   final Function onValidator;
-
-  const CustomTextFormField({Key key, this.title, this.hintText, this.hintStyleColor, this.fontSize, this.onSave, this.onValidator}) : super(key: key);
+  final secure;
+  const CustomTextFormField({Key key, this.title, this.hintText, this.hintStyleColor, this.fontSize, this.onSave, this.onValidator, this.secure = false}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return  Column(
@@ -24,6 +24,7 @@ class CustomTextFormField extends StatelessWidget {
           alignment: Alignment.topLeft,
         ),
         TextFormField(
+          obscureText: secure,
           onSaved: onSave,
           validator: onValidator,
           decoration: InputDecoration(

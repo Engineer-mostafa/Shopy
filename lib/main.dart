@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import './utiles/binding.dart';
 
 //screens
-import './view/auth/login_screen.dart';
+import './view/control_view.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,8 +20,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       initialBinding: Binding(),
-      home: LoginScreen(),
+      home: ControlView(),
     );
   }
 }

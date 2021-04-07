@@ -8,12 +8,13 @@ import './custom_text.dart';
 
 class CustomButton extends StatelessWidget {
   final padding;
+  final title;
   final borderRadius;
   final buttonColor;
   final fontSize;
   final Function onpressed;
 
-  const CustomButton({Key key, this.padding = 10, this.borderRadius = 4, this.buttonColor = Colors.amber, this.fontSize = 18.0, this.onpressed}) : super(key: key);
+  const CustomButton({Key key, this.padding = 10.0, this.borderRadius = 4.0, this.buttonColor = Colors.amber, this.fontSize = 18.0, this.onpressed, this.title = "Sign In"}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class CustomButton extends StatelessWidget {
       child: CustomText(fontSize: fontSize,
         color: Colors.white,
         alignment: Alignment.center,
-        title: "Sign In",
+        title: title,
       ),
     );
   }
