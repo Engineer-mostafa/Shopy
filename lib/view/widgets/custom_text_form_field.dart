@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 import 'custom_text.dart';
@@ -12,10 +10,22 @@ class CustomTextFormField extends StatelessWidget {
   final Function onSave;
   final Function onValidator;
   final secure;
-  const CustomTextFormField({Key key, this.title, this.hintText, this.hintStyleColor, this.fontSize, this.onSave, this.onValidator, this.secure = false}) : super(key: key);
+  final controller;
+  const CustomTextFormField(
+      {Key key,
+      this.title,
+      this.hintText,
+      this.hintStyleColor,
+      this.fontSize,
+      this.onSave,
+      this.onValidator,
+      this.secure = false, this.controller ,
+      })
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       children: [
         CustomText(
           title: title,
@@ -24,6 +34,7 @@ class CustomTextFormField extends StatelessWidget {
           alignment: Alignment.topLeft,
         ),
         TextFormField(
+          controller: controller,
           obscureText: secure,
           onSaved: onSave,
           validator: onValidator,
@@ -31,10 +42,8 @@ class CustomTextFormField extends StatelessWidget {
               hintText: hintText,
               hintStyle: TextStyle(
                 color: hintStyleColor,
-
               ),
-              fillColor:Colors.white
-          ),
+              fillColor: Colors.white),
         )
       ],
     );

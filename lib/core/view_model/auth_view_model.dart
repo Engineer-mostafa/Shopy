@@ -1,5 +1,6 @@
 
 //packages
+import 'package:e_commerce/view/home_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
@@ -21,6 +22,8 @@ class AuthViewModel extends GetxController {
   Rx<User> _user = Rx<User>(null);
   String get user=> _user.value?.email;
 
+  //eye
+  bool _eye = false;
 
   @override
   void onInit() {
@@ -90,6 +93,21 @@ class AuthViewModel extends GetxController {
   void signInWithEmailAndPassword() async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
+      Get.offAll(HomeView());
+    } catch (e) {
+      Get.snackbar("Error Login account",
+          e.message,
+          colorText: Colors.black ,
+          snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+  /*sign up with Email and Password*/
+  void signupWithEmailAndPassword() async {
+    try {
+      await _auth.createUserWithEmailAndPassword( email: email, password: password);
+      Get.offAll(HomeView());
+
     } catch (e) {
       Get.snackbar("Error Login account",
           e.message,
@@ -104,4 +122,15 @@ class AuthViewModel extends GetxController {
     await _auth.signOut();
     print("SignOut");
   }
+
+
+
+  /*toggle the eye*/
+  bool toggleEye(){
+    print(eye);
+      _eye=!_eye;
+      update();
+      return _eye;
+  }
+  bool get eye => _eye;
 }
