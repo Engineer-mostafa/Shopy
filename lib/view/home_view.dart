@@ -12,14 +12,12 @@ class HomeView extends GetWidget<AuthViewModel> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home Screen"),
+        title: const Text("Home Screen"),
       ),
-      body: Container(
-        child: Center(
-          child: CustomButton(
-        title: "Sign Out",
-            onpressed: ()=>controller.signOutFromGoogle(),
-          ),
+      body: Center(
+        child: CustomButton(
+      title: "Sign Out",
+          onpressed: ()=>controller.signOutFromGoogle(),
         ),
       ),
     );

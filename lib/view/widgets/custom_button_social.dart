@@ -6,11 +6,11 @@ class CustomButtonSocial extends StatelessWidget {
   final String text;
   final String imageName;
   final Function onPress;
-  final fontSize;
-  final borderRadius;
-  final width;
+  final double fontSize;
+  final double borderRadius;
+  final double width;
 
-  CustomButtonSocial({
+  const CustomButtonSocial({
     @required this.text,
     @required this.imageName,
     @required this.onPress,
@@ -27,8 +27,8 @@ class CustomButtonSocial extends StatelessWidget {
       ),
       child: FlatButton(
         onPressed: onPress,
-        shape: new RoundedRectangleBorder(
-          borderRadius: new BorderRadius.circular(borderRadius),
+        shape:  RoundedRectangleBorder(
+          borderRadius:  BorderRadius.circular(borderRadius),
         ),
         child: Row(
           children: [

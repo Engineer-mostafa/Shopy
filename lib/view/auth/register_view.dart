@@ -1,7 +1,6 @@
 import 'package:e_commerce/core/view_model/auth_view_model.dart';
 import 'package:e_commerce/view/auth/login_screen.dart';
 import 'package:e_commerce/view/widgets/custom_button.dart';
-import 'package:e_commerce/view/widgets/custom_button_social.dart';
 import 'package:e_commerce/view/widgets/custom_text.dart';
 import 'package:e_commerce/view/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -16,37 +15,34 @@ class RegisterView extends GetWidget<AuthViewModel> {
 
   @override
   Widget build(BuildContext context) {
-    void closeKeyboard(){
-      FocusScopeNode currentFocus = FocusScope.of(context);
+    void closeKeyboard() {
+      final  currentFocus = FocusScope.of(context);
       if (!currentFocus.hasPrimaryFocus) {
         currentFocus.unfocus();
       }
     }
-    void confirmP(){
 
-    }
-    final mediaQ = MediaQuery
-        .of(context)
-        .size;
+    final mediaQ = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(
-          onTap: ()=>Get.off(LoginScreen()),
-            child: Icon(Icons.arrow_back , color: Colors.black,)),
+            onTap: () => Get.off(LoginScreen()),
+            child: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            )),
         elevation: 0.0,
         backgroundColor: Colors.white,
       ),
       body: GestureDetector(
         onTap: closeKeyboard,
         child: Padding(
-          padding:  EdgeInsets.only(
-              left: mediaQ.width/18,
-              right: mediaQ.width/18,
-              top: mediaQ.height/100,
-              bottom: mediaQ.height/8
-          ),
-          child:
-          SingleChildScrollView(
+          padding: EdgeInsets.only(
+              left: mediaQ.width / 18,
+              right: mediaQ.width / 18,
+              top: mediaQ.height / 100,
+              bottom: mediaQ.height / 8),
+          child: SingleChildScrollView(
             child: Form(
               key: _formKey,
               child: Padding(
@@ -55,11 +51,9 @@ class RegisterView extends GetWidget<AuthViewModel> {
                   children: [
                     CustomText(
                       title: "Sign Up,",
-                      color: Colors.black,
                       fontSize: mediaQ.width / 13,
                       alignment: Alignment.topLeft,
                     ),
-
                     SizedBox(
                       height: mediaQ.height / 20,
                     ),
@@ -68,12 +62,11 @@ class RegisterView extends GetWidget<AuthViewModel> {
                       hintText: "mostafa",
                       hintStyleColor: Colors.grey,
                       fontSize: mediaQ.width / 25,
-                      onSave: (value) {
-                        controller.email = value;
-                      },
-                      onValidator: (value) {
-                        if(value == null || value == "")
-                          return "Enter name please";
+                      onSave: (String value) => controller.name = value,
+                      onValidator: (String value) {
+                        if (value == null || value == "") {
+                         return "Enter name please";
+                        }
 
                       },
                     ),
@@ -85,12 +78,11 @@ class RegisterView extends GetWidget<AuthViewModel> {
                       hintText: "mos@example.con",
                       hintStyleColor: Colors.grey,
                       fontSize: mediaQ.width / 25,
-                      onSave: (value) {
-                        controller.email = value;
-                      },
-                      onValidator: (value) {
-                        if(value == null || value == "")
+                      onSave: (String value) => controller.email = value,
+                      onValidator: (String value) {
+                        if (value == null || value == "") {
                           return "Enter email please";
+                        }
                       },
                     ),
                     SizedBox(
@@ -102,12 +94,12 @@ class RegisterView extends GetWidget<AuthViewModel> {
                       hintText: "***************",
                       hintStyleColor: Colors.grey,
                       fontSize: mediaQ.width / 25,
-                      onSave: (value) {
-                        controller.password = value;
-                      },
-                      onValidator: (value) {
-                        if(value == null || value == "")
+                      onSave: (String value) => controller.password = value,
+                      onValidator: (String value) {
+                        if (value == null || value == "") {
                           return "Enter password please";
+                        }
+
                       },
                       secure: true,
                     ),
@@ -120,22 +112,17 @@ class RegisterView extends GetWidget<AuthViewModel> {
                       hintText: "***************",
                       hintStyleColor: Colors.grey,
                       fontSize: mediaQ.width / 25,
-                      onSave: (value) {
-                        controller.password = value;
-                      },
-                      onValidator: (value) {
-                        if(value == null || value == "")
+                      onSave: (String value) => controller.password = value,
+                      onValidator: (String value) {
+                        if (value == null || value == "") {
                           return "Enter password please";
-                        else if(confPass.text != pass.text)
-                          {
-                            return "didn't match";
-                          }
-
+                        } else if (confPass.text != pass.text) {
+                          return "didn't match";
+                        }
 
                       },
                       secure: true,
                     ),
-
                     SizedBox(
                       height: mediaQ.height / 30,
                     ),
@@ -145,19 +132,16 @@ class RegisterView extends GetWidget<AuthViewModel> {
                       fontSize: mediaQ.width / 20,
                       borderRadius: mediaQ.width / 80,
                       buttonColor: primaryColor,
-                      onpressed: (){
-                        if(_formKey.currentState.validate()) {
+                      onpressed: () {
+                        if (_formKey.currentState.validate()) {
                           _formKey.currentState.save();
                           controller.signupWithEmailAndPassword();
                         }
-
                       },
                     ),
                     SizedBox(
                       height: mediaQ.height / 70,
                     ),
-
-
                   ],
                 ),
               ),

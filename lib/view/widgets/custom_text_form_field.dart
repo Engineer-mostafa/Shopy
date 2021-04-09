@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'custom_text.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  final title;
-  final hintText;
-  final hintStyleColor;
-  final fontSize;
+  final String title;
+  final String hintText;
+  final Color hintStyleColor;
+  final double fontSize;
   final Function onSave;
-  final Function onValidator;
-  final secure;
-  final controller;
+  final  Function onValidator;
+  final bool secure;
+  final TextEditingController controller;
   const CustomTextFormField(
       {Key key,
       this.title,
@@ -18,8 +18,9 @@ class CustomTextFormField extends StatelessWidget {
       this.hintStyleColor,
       this.fontSize,
       this.onSave,
-      this.onValidator,
-      this.secure = false, this.controller ,
+      this.onValidator ,
+      this.secure = false,
+      this.controller,
       })
       : super(key: key);
 

@@ -3,20 +3,17 @@ import 'package:e_commerce/view/auth/register_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+//widgets
+import '../../Constants.dart';
 
 //controller
 import '../../core/view_model/auth_view_model.dart';
-
-
-//widgets
-import '../../Constants.dart';
-import '../widgets/custom_text_form_field.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_button_social.dart';
 
-
 //screens
 import '../widgets/custom_text.dart';
+import '../widgets/custom_text_form_field.dart';
 
 class LoginScreen extends GetWidget<AuthViewModel> {
   /*this is like id that uniquely identify the form or widgets*/
@@ -24,7 +21,7 @@ class LoginScreen extends GetWidget<AuthViewModel> {
   @override
   Widget build(BuildContext context) {
     void closeKeyboard(){
-      FocusScopeNode currentFocus = FocusScope.of(context);
+      final  currentFocus = FocusScope.of(context);
       if (!currentFocus.hasPrimaryFocus) {
         currentFocus.unfocus();
       }
@@ -56,7 +53,6 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                       children: [
                         CustomText(
                           title: "Welcome",
-                          color: Colors.black,
                           fontSize: mediaQ.width / 13,
                         ),
                         GestureDetector(
@@ -86,12 +82,14 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                       hintText: "mos@example.con",
                       hintStyleColor: Colors.grey,
                       fontSize: mediaQ.width / 25,
-                      onSave: (value) {
-                        controller.email = value;
-                      },
-                      onValidator: (value) {
-                        if(value == null || value == "")
-                         return "Enter email please";
+                      onSave: (String value) => controller.email = value
+                      ,
+                      onValidator: (String value) {
+                        if(value == null || value == "") {
+                          return "Enter email please";
+                        }
+
+
                       },
                     ),
                     SizedBox(
@@ -102,12 +100,12 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                       hintText: "***************",
                       hintStyleColor: Colors.grey,
                       fontSize: mediaQ.width / 25,
-                      onSave: (value) {
-                        controller.password = value;
-                      },
-                      onValidator: (value) {
-                        if(value == null || value == "")
+                      onSave: (String value) =>  controller.password = value,
+                      onValidator: (String value) {
+                        if(value == null || value == "") {
                           return "Enter password please";
+                        }
+
                       },
                       secure: true,
                     ),
@@ -118,7 +116,6 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                       title: "forget password?",
                       fontSize: mediaQ.width / 25,
                       alignment: Alignment.topRight,
-                      color: Colors.black,
                     ),
                     SizedBox(
                       height: mediaQ.height / 30,
@@ -131,9 +128,8 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                       onpressed: (){
                         if(_formKey.currentState.validate()) {
                           _formKey.currentState.save();
-                          controller.signInWithEmailAndPassword();
+                          return controller.signInWithEmailAndPassword();
                         }
-
                       },
                     ),
                     SizedBox(
@@ -142,7 +138,6 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                     CustomText(
                       title: "-OR-",
                       fontSize: mediaQ.width/20,
-                      alignment: Alignment.center,
                     ),
                     SizedBox(
                       height: mediaQ.height / 35,
@@ -150,9 +145,7 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                     CustomButtonSocial(
                       text: "Sign In With Google",
                       imageName: 'assets/images/gg.png',
-                      onPress: ()=>
-                          controller.googleSignInMethod()
-                      ,
+                      onPress: ()=> controller.googleSignInMethod(),
                       fontSize: mediaQ.width/26,
                       borderRadius: mediaQ.width/50,
                       width: mediaQ.width/4.5,
@@ -163,7 +156,7 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                     CustomButtonSocial(
                       text: "Sign In With Facebook",
                       imageName: 'assets/images/facebook.png',
-                      onPress: ()=>controller.facebookSignInMethod(),
+                      onPress: ()=> controller.facebookSignInMethod(),
                       fontSize: mediaQ.width/26,
                       borderRadius: mediaQ.width/50,
                       width: mediaQ.width/4.5,

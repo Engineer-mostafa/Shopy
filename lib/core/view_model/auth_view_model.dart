@@ -1,6 +1,10 @@
 
 //packages
-import 'package:e_commerce/view/home_view.dart';
+import 'package:e_commerce/view/auth/login_screen.dart';
+
+import '../services/firestore_user.dart';
+import '../../model/user_model.dart';
+import '../../view/home_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
@@ -19,7 +23,7 @@ class AuthViewModel extends GetxController {
   String email, password, name;
 
   //saved the state of the user if he signedin
-  Rx<User> _user = Rx<User>(null);
+  final Rx<User> _user = Rx<User>(null);
   String get user=> _user.value?.email;
 
   //eye
@@ -46,7 +50,7 @@ class AuthViewModel extends GetxController {
   }
 
   /*signin with gmail*/
-  void googleSignInMethod() async {
+  Future googleSignInMethod() async {
     try {
       //just to open google form and choose email
       final _googleUser = await _googleSignIn.signIn();
@@ -60,17 +64,24 @@ class AuthViewModel extends GetxController {
       );
 
       // signin in firebase using credential
-      await _auth.signInWithCredential(googleCredential);
+      await _auth.signInWithCredential(googleCredential).then((user) {
+
+
+          addUTF(user);
+          Get.offAll(HomeView());
+      }
+      );
+
     } catch (e) {
-      print(e.messege);
+    // ignore: empty_catches
     }
   }
 
   /*signin with password*/
-  void facebookSignInMethod() async {
+  Future facebookSignInMethod() async {
     try {
       /*just to open facebook form and choose email*/
-      FacebookLoginResult result = await _facebookLogin.logIn(['email']);
+      final FacebookLoginResult result = await _facebookLogin.logIn(['email']);
 
       /*get accessToken from facebook*/
       final accessToken = result.accessToken.token;
@@ -78,11 +89,12 @@ class AuthViewModel extends GetxController {
       /*check if user loggedin or not and then signin with facebook credential*/
       if (result.status == FacebookLoginStatus.loggedIn) {
         final faceCredential = FacebookAuthProvider.credential(accessToken);
-        await _auth.signInWithCredential(faceCredential);
+        await _auth.signInWithCredential(faceCredential).then((user)=>addUTF(user));;
       }
     } catch (e) {
+
       Get.snackbar("Error Login account",
-        e.message,
+        e.message.toString(),
         colorText: Colors.black ,
         snackPosition: SnackPosition.BOTTOM,
       );
@@ -90,44 +102,55 @@ class AuthViewModel extends GetxController {
   }
 
   /*sign in with Email and Password*/
-  void signInWithEmailAndPassword() async {
+  Future signInWithEmailAndPassword() async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
       Get.offAll(HomeView());
     } catch (e) {
       Get.snackbar("Error Login account",
-          e.message,
+          e.message.toString(),
           colorText: Colors.black ,
           snackPosition: SnackPosition.BOTTOM,
       );
     }
   }
   /*sign up with Email and Password*/
-  void signupWithEmailAndPassword() async {
+  Future signupWithEmailAndPassword() async {
     try {
-      await _auth.createUserWithEmailAndPassword( email: email, password: password);
+      await _auth.createUserWithEmailAndPassword( email: email,
+          password: password).then((user)=>addUTF(user));
+
       Get.offAll(HomeView());
 
     } catch (e) {
       Get.snackbar("Error Login account",
-          e.message,
+          e.message.toString(),
           colorText: Colors.black ,
           snackPosition: SnackPosition.BOTTOM,
       );
     }
   }
 
+  Future<void> addUTF(user) async {
+    final us = user.user;
+    await FireStoreUser().addUserToFireStore(
+        UserModel(userId: us.uid,
+            email: us.email,
+            name: name,
+            picture: us.photoURL));
+  }
   /*signOut google*/
-  void signOutFromGoogle() async {
+  Future signOutFromGoogle() async {
     await _auth.signOut();
-    print("SignOut");
+    Get.offAll(LoginScreen());
+    debugPrint("SignOut");
   }
 
 
 
   /*toggle the eye*/
   bool toggleEye(){
-    print(eye);
+    debugPrint(eye.toString());
       _eye=!_eye;
       update();
       return _eye;

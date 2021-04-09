@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CustomText extends StatelessWidget {
-  final title;
-  final color;
-  final fontSize;
+  final String title;
+  final Color color;
+  final double fontSize;
   final Alignment alignment;
 
-  const CustomText({Key key, this.title:"", this.color:Colors.black, this.fontSize:30.0, this.alignment:Alignment.center})
+  const CustomText({Key key, this.title = "", this.color = Colors.black, this.fontSize = 30.0, this.alignment = Alignment.center})
       : super(key: key);
 
   @override

@@ -9,7 +9,7 @@ import './utiles/binding.dart';
 //screens
 import './view/control_view.dart';
 
-void main() async{
+Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());

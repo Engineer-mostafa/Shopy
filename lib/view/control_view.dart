@@ -4,14 +4,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
-
 //controller
 import '../core/view_model/auth_view_model.dart';
 
 //Screens
-import '../view/home_view.dart';
 import '../view/auth/login_screen.dart';
+import '../view/home_view.dart';
 
 
 
